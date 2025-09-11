@@ -7,8 +7,8 @@
 
 # Site Settings
 title                    : "Ziping Dong"
-description              : "The homepage of Ziping Dong. "
-repository               : "holdrain/zipingdong.github.io"
+description              : "Welcome!"
+repository               : "holdrain/holdrain.github.io"
 google_scholar_stats_use_cdn : true
 
 # google analytics
@@ -23,7 +23,7 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 author:
   name             : "Ziping Dong"
   avatar           : "images/android-chrome-512x512.png"
-  bio              : "Lorem ipsum College"
+  bio              : "Zhejiang University "
   location         : "Hangzhou, China"
   employer         :
   pubmed           : 
