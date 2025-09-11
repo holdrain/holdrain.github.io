@@ -17,31 +17,44 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-Welcome to my homepage! My name is Dong Ziping (董子平). I am currently a third-year master’s student in the Department of Computer Science at Zhejiang University, where I am supervised by Professor Zhongjie Ba and Professor Kui Ren. Additionally, I am currently interning at Hong Kong Baptist University (HKBU), where I work with Professor Bo Han.
+Welcome to my homepage! My name is Ziping Dong(董子平). I am currently a third-year master’s student in the Department of Computer Science at Zhejiang University, where I am supervised by Professor [Zhongjie Ba](https://person.zju.edu.cn/en/0020067) and Professor [Kui Ren](https://scholar.google.com/citations?user=uuQA_rcAAAAJ&hl=en). Additionally, I am currently interning at Hong Kong Baptist University (HKBU), where I work with Professor [Bo Han](https://bhanml.github.io/).
 
-My research interests include trustworthy marchine learning, robustness, AIGC Image Watermarking, and VLMs. 
+My research interests include trustworthy machine learning, robustness, AIGC Image Watermarking, and VLMs. 
 
 
 
 # 🔥 News
 - *2025.03*: &nbsp;🎉🎉 Our paper Harnessing Frequency Spectrum Insights for Image Copyright Protection Against Diffusion Models is accepted by CVPR 2025!
 
-# 📝 Publications 
+# 📝 Publications
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2016</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
+<div class='paper-box'>
+  <div class='paper-box-image'>
+    <div>
+      <div class="badge">CVPR 2016</div>
+      <img src='images/500x300.png' alt="sym" width="100%">
+    </div>
+  </div>
+  <div class='paper-box-text' markdown="1">
+    [WMCopier: Forging Invisible Image Watermarks on Arbitrary Images](https://arxiv.org/pdf/2503.22330)
 
-[WMCopier: Forging Invisible Image Watermarks on Arbitrary Images](https://arxiv.org/pdf/2503.22330)
+    **Ziping Dong**, Chao Shuai, Zhongjie Ba, Peng Cheng, Zhan Qin, Qinglong Wang, Kui Ren.
+  </div>
+</div>
 
-**Ziping Dong**, Chao Shuai, Zhongjie Ba, Peng Cheng, Zhan Qin, Qinglong Wang, Kui Ren.
+<div class='paper-box'>
+  <div class='paper-box-image'>
+    <div>
+      <div class="badge">CVPR 2025</div>
+      <img src='images/500x300.png' alt="sym" width="100%">
+    </div>
+  </div>
+  <div class='paper-box-text' markdown="1">
+    [Harnessing Frequency Spectrum Insights for Image Copyright Protection Against Diffusion Models](https://arxiv.org/pdf/2503.11071)
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
-<div class='paper-box-text' markdown="1">
-
-[Harnessing Frequency Spectrum Insights for Image Copyright Protection Against Diffusion Models](https://arxiv.org/pdf/2503.11071)
-
-Zhenguang Liu, Chao Shuai, Shaojing Fan, **Ziping Dong**, Jinwu Hu, Zhongjie Ba, Kui Ren.
-
+    Zhenguang Liu, Chao Shuai, Shaojing Fan, **Ziping Dong**, Jinwu Hu, Zhongjie Ba, Kui Ren.
+  </div>
+</div>
 
 
 
