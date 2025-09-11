@@ -48,7 +48,7 @@ Zhenguang Liu, Chao Shuai, Shaojing Fan, **Ziping Dong**, Jinwu Hu, Zhongjie Ba,
 </div>
 </div>
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='images/certifiedroubust.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='images/certifiedrobust.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [“Training robust watermarking model may hurt authentication!” Exploring and Mitigating the Identity Leakage in Robust Watermarking]()
