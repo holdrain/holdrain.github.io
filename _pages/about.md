@@ -27,7 +27,7 @@ My research interests include trustworthy machine learning, robustness, AIGC Ima
 - *2025.03*: &nbsp;🎉🎉 Our paper Harnessing Frequency Spectrum Insights for Image Copyright Protection Against Diffusion Models is accepted by CVPR 2025!
 
 # 📝 Publications
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='images/22330.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [WMCopier: Forging Invisible Image Watermarks on Arbitrary Images](https://arxiv.org/pdf/2503.22330)
@@ -40,7 +40,7 @@ My research interests include trustworthy machine learning, robustness, AIGC Ima
 </div>
 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2025</div><img src='images/500x300.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2025</div><img src='images/11071.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [Harnessing Frequency Spectrum Insights for Image Copyright Protection Against Diffusion Models](https://arxiv.org/pdf/2503.11071)
@@ -61,12 +61,5 @@ Zhenguang Liu, Chao Shuai, Shaojing Fan, **Ziping Dong**, Jinwu Hu, Zhongjie Ba,
 - *2021.09* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
 
 # 📖 Educations
-- *2019.06 - 2022.04 (now)*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2015.09 - 2019.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-
-# 💬 Invited Talks
-- *2021.06*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. 
-- *2021.03*, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet.  \| [\[video\]](https://github.com/)
-
-# 💻 Internships
-- *2019.05 - 2020.02*, [Lorem](https://github.com/), China.
+- *2023.06 - Present*, Master student in Computer Science, Zhejiang University. 
+- *2018.09 - 2022.06*, Software Engineering Bachelor's Degree, TianGong University.
