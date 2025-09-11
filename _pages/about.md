@@ -48,7 +48,15 @@ Zhenguang Liu, Chao Shuai, Shaojing Fan, **Ziping Dong**, Jinwu Hu, Zhongjie Ba,
 </div>
 </div>
 
-- [Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet](https://github.com), A, B, C, **CVPR 2020**
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CVPR 2025</div><img src='images/certifiedroubust.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[“Training robust watermarking model may hurt authentication!” Exploring and Mitigating the Identity Leakage in Robust Watermarking]()
+
+Xinyu Zhang, **Ziping Dong**, Qingyu Liu, Yuan Hong, Zhongjie Ba.
+</div>
+</div>
+
 
 # 🎖 Honors and Awards
 - *2023-2024* Outstanding Graduate Award.
