@@ -19,9 +19,9 @@ redirect_from:
 
 Welcome to my homepage! My name is Ziping Dong(董子平). I am currently a third-year master’s student in the Department of Computer Science at Zhejiang University, where I am supervised by Professor [Zhongjie Ba](https://person.zju.edu.cn/en/0020067) and Professor [Kui Ren](https://scholar.google.com/citations?user=uuQA_rcAAAAJ&hl=en). Additionally, I am currently interning at Hong Kong Baptist University (HKBU), where I work with Professor [Bo Han](https://bhanml.github.io/).
 
-My research interests include trustworthy machine learning, robustness, AIGC Image Watermarking, and VLMs. 
+My research interests include trustworthy machine learning, robustness, AIGC Image Watermarking, generative models, and VLMs. 
 
-
+<span style="color:red"><b>I am actively seeking Ph.D. opportunities for Fall 2026.</b></span>
 
 # 🔥 News
 - *2025.03*: &nbsp;🎉🎉 Our paper Harnessing Frequency Spectrum Insights for Image Copyright Protection Against Diffusion Models is accepted by CVPR 2025!
