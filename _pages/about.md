@@ -27,13 +27,14 @@ My research interests include trustworthy machine learning, robustness, AIGC Ima
 - *2025.03*: &nbsp;🎉🎉 Our paper Harnessing Frequency Spectrum Insights for Image Copyright Protection Against Diffusion Models is accepted by CVPR 2025!
 
 # 📝 Publications
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='images/22330.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">NeurIPS 2025</div><img src='images/22330.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [WMCopier: Forging Invisible Image Watermarks on Arbitrary Images](https://arxiv.org/pdf/2503.22330)
 
 **Ziping Dong**, Chao Shuai, Zhongjie Ba, Peng Cheng, Zhan Qin, Qinglong Wang, Kui Ren.
 - The first framework can forge multiple image watermarks on arbitrary images.
+- Accepted as a poster at the 39th Conference on Neural Information Processing Systems (NeurIPS) 2025
 </div>
 </div>
 
