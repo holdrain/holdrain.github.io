@@ -59,6 +59,7 @@ Xinyu Zhang, **Ziping Dong**, Qingyu Liu, Yuan Hong, Zhongjie Ba.
 
 
 # 🎖 Honors and Awards
+- *2024-2025* Zhejiang University Graduate First Prize Scholarship
 - *2023-2024* Outstanding Graduate Award.
 
 # 📖 Educations
