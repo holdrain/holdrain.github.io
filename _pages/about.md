@@ -72,6 +72,11 @@ Xinyu Zhang, **Ziping Dong**, Qingyu Liu, Yuan Hong, Zhongjie Ba.
 - I'm into badminton and do training for improvement.
 - I also enjoy cycling in my free time. It helps me relax and explore new places. I’ve already achieved my 1,000 km goal in one year!
 
+<div style="display:flex; justify-content:center; gap:12px; flex-wrap:nowrap;">
+  <img src="images/cycling.jpg" alt="Cycling 1" style="width:28%; height:300px; display:inline-block;">
+  <img src="images/cycling1.jpg" alt="Cycling 2" style="width:28%; height:300px; display:inline-block;">
+  <img src="images/badminton.jpg" alt="Badminton" style="width:28%; height:300px; display:inline-block;">
+</div>
 
 # 🌍 Visitor Map
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
