@@ -71,14 +71,13 @@ Xinyu Zhang, **Ziping Dong**, Qingyu Liu, Yuan Hong, Zhongjie Ba.
 # 🏓 Hobbies
 
 ## 🚴‍♂️ Cycling
-![Cycling](images/cycling.jpg)
-![Cycling](images/cycling1.jpg) 
-I enjoy long-distance cycling in my free time. It helps me relax and explore new places.
+<img src='images/cycling.jpg' alt="sym" width="50%">
+<img src='images/cycling.jpg' alt="sym" width="50%">
+I enjoy cycling in my free time. It helps me relax and explore new places.
 
 ## 🏸 Badminton
-![Badminton](images/badminton.jpg)  
+<img src='images/badminton.jpg' alt="sym" width="100%">
 I regularly play badminton with friends to stay fit and improve my reflexes.
-
 
 # 🌍 Visitor Map
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
