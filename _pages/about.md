@@ -68,6 +68,18 @@ Xinyu Zhang, **Ziping Dong**, Qingyu Liu, Yuan Hong, Zhongjie Ba.
 - *2023.06 - Present*, Master student in Computer Science, Zhejiang University. 
 - *2018.09 - 2022.06*, Software Engineering Bachelor's Degree, TianGong University.
 
+# 🏓 Hobbies
+
+## 🚴‍♂️ Cycling
+![Cycling](images/cycling.jpg)
+![Cycling](images/cycling1.jpg) 
+I enjoy long-distance cycling in my free time. It helps me relax and explore new places.
+
+## 🏸 Badminton
+![Badminton](images/badminton.jpg)  
+I regularly play badminton with friends to stay fit and improve my reflexes.
+
+
 # 🌍 Visitor Map
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
   <a href="https://mapmyvisitors.com/web/1bzcu" title="Visit tracker">
