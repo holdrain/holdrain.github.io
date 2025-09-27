@@ -21,7 +21,7 @@ Welcome to my homepage! My name is Ziping Dong(董子平). I am currently a thir
 
 My research interests include trustworthy machine learning, robustness, AIGC Image Watermarking, generative models, and VLMs. 
 
-<span style="color:red"><b>I am actively seeking Ph.D. opportunities for Fall 2026.</b></span>
+<!-- <span style="color:red"><b>I am actively seeking Ph.D. opportunities for Fall 2026.</b></span> -->
 
 # 🔥 News
 - *2025.09*: &nbsp;🎉🎉 Our paper “WMCopier: Forging Invisible Image Watermarks on Arbitrary Images” is accepted by NeurIPS 2025!
