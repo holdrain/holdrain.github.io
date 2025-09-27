@@ -69,15 +69,17 @@ Xinyu Zhang, **Ziping Dong**, Qingyu Liu, Yuan Hong, Zhongjie Ba.
 - *2018.09 - 2022.06*, Software Engineering Bachelor's Degree, TianGong University.
 
 # 🏓 Hobbies
+<p>
+I'm currently learning badminton and aiming to pass the Level 3 test of the Chinese Badminton Association.  
+I also enjoy cycling in my free time. It helps me relax and explore new places.
+</p>
 
-## 🚴‍♂️ Cycling
-<img src='images/cycling.jpg' alt="sym" width="50%">
-<img src='images/cycling.jpg' alt="sym" width="50%">
-I enjoy cycling in my free time. It helps me relax and explore new places.
+<div style="display:flex; justify-content:center; gap:10px;">
+  <img src="images/cycling.jpg" alt="Cycling" style="width:30%;">
+  <img src="images/cycling.jpg" alt="Cycling" style="width:30%;">
+  <img src="images/badminton.jpg" alt="Badminton" style="width:30%;">
+</div>
 
-## 🏸 Badminton
-<img src='images/badminton.jpg' alt="sym" width="100%">
-I regularly play badminton with friends to stay fit and improve my reflexes.
 
 # 🌍 Visitor Map
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
