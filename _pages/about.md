@@ -17,11 +17,9 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-Welcome to my homepage! My name is Ziping Dong(董子平). I am currently a third-year master’s student in the Department of Computer Science at Zhejiang University, where I am supervised by Professor [Zhongjie Ba](https://person.zju.edu.cn/en/0020067) and Professor [Kui Ren](https://scholar.google.com/citations?user=uuQA_rcAAAAJ&hl=en). Additionally, I am currently interning at Hong Kong Baptist University (HKBU), where I work with Professor [Bo Han](https://bhanml.github.io/).
+Welcome to my homepage! My name is Ziping Dong(董子平). I am currently a third-year master’s student in the Department of Computer Science at Zhejiang University, where I am supervised by Professor [Zhongjie Ba](https://person.zju.edu.cn/en/0020067) and Professor [Kui Ren](https://scholar.google.com/citations?user=uuQA_rcAAAAJ&hl=en). 
 
-My research interests include trustworthy machine learning, robustness, AIGC Image Watermarking, generative models, and VLMs. 
-
-<!-- <span style="color:red"><b>I am actively seeking Ph.D. opportunities for Fall 2026.</b></span> -->
+My research interests include trustworthy machine learning, robustness, AIGC Image Watermarking, and generative models. 
 
 # 🔥 News
 - *2025.09*: &nbsp;🎉🎉 Our paper “WMCopier: Forging Invisible Image Watermarks on Arbitrary Images” is accepted by NeurIPS 2025!
@@ -61,8 +59,9 @@ Xinyu Zhang, **Ziping Dong**, Qingyu Liu, Yuan Hong, Zhongjie Ba.
 
 
 # 🎖 Honors and Awards
-- *2024-2025* Zhejiang University Graduate First Prize Scholarship
-- *2023-2024* Outstanding Graduate Award.
+- *2023-2025* Zhejiang University Graduate First Prize Scholarship
+- *2023-2025* Outstanding Graduate Award.
+
 
 # 📖 Educations
 - *2023.06 - Present*, Master student in Computer Science, Zhejiang University. 
@@ -70,13 +69,7 @@ Xinyu Zhang, **Ziping Dong**, Qingyu Liu, Yuan Hong, Zhongjie Ba.
 
 # 🏓 Hobbies
 - I'm into badminton and do training for improvement.
-- I also enjoy cycling in my free time. It helps me relax and explore new places. I’ve already achieved my 1,000 km goal in one year!
-
-<div style="display:flex; justify-content:center; gap:12px; flex-wrap:nowrap;">
-  <img src="images/cycling.jpg" alt="Cycling 1" style="width:28%; height:300px; display:inline-block;">
-  <img src="images/cycling1.jpg" alt="Cycling 2" style="width:28%; height:300px; display:inline-block;">
-  <img src="images/badminton.jpg" alt="Badminton" style="width:28%; height:300px; display:inline-block;">
-</div>
+- I also enjoy cycling in my free time. It helps me relax and explore new places.
 
 # 🌍 Visitor Map
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
