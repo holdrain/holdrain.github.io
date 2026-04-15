@@ -17,9 +17,9 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-Welcome to my homepage! My name is Ziping Dong(董子平). I am currently a third-year master’s student in the Department of Computer Science at Zhejiang University, where I am supervised by Professor [Zhongjie Ba](https://person.zju.edu.cn/en/0020067) and Professor [Kui Ren](https://scholar.google.com/citations?user=uuQA_rcAAAAJ&hl=en). 
+Welcome to my homepage! My name is Ziping Dong(董子平). I obtained my master's degree in the Department of Computer Science at Zhejiang University, where I am supervised by Professor [Zhongjie Ba](https://person.zju.edu.cn/en/0020067) and Professor [Kui Ren](https://scholar.google.com/citations?user=uuQA_rcAAAAJ&hl=en). 
 
-My research interests include trustworthy machine learning, robustness, AIGC Image Watermarking, and generative models. 
+My research interests include Trustworthy machine learning and Visual generation models. 
 
 # 🔥 News
 - *2025.09*: &nbsp;🎉🎉 Our paper “WMCopier: Forging Invisible Image Watermarks on Arbitrary Images” is accepted by NeurIPS 2025!
@@ -61,10 +61,11 @@ Xinyu Zhang, **Ziping Dong**, Qingyu Liu, Yuan Hong, Zhongjie Ba.
 # 🎖 Honors and Awards
 - *2023-2025* Zhejiang University Graduate First Prize Scholarship
 - *2023-2025* Outstanding Graduate Award.
+- *2026* Excellent Graduate of Zhejiang University.
 
 
 # 📖 Educations
-- *2023.06 - Present*, Master student in Computer Science, Zhejiang University. 
+- *2023.06 - 2026.03*, Master student in Computer Science, Zhejiang University. 
 - *2018.09 - 2022.06*, Software Engineering Bachelor's Degree, TianGong University.
 
 # 🏓 Hobbies
