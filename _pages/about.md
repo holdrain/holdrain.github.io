@@ -17,8 +17,8 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-Welcome to my homepage! My name is Ziping Dong(董子平). I obtained my master's degree in the Department of Computer Science at Zhejiang University, where I am supervised by Professor [Zhongjie Ba](https://person.zju.edu.cn/en/0020067) and Professor [Kui Ren](https://scholar.google.com/citations?user=uuQA_rcAAAAJ&hl=en). 
-
+Welcome to my homepage! My name is Ziping Dong(董子平). I am an incoming PhD student at xML Lab@NUS, supervised by Presidential Young Professor Xinchao Wang.
+I obtained my master's degree in the Department of Computer Science at Zhejiang University, where I am supervised by Professor [Zhongjie Ba](https://person.zju.edu.cn/en/0020067) and Professor [Kui Ren](https://scholar.google.com/citations?user=uuQA_rcAAAAJ&hl=en). 
 My research interests include Trustworthy machine learning and Visual generation models. 
 
 # 🔥 News
@@ -51,7 +51,7 @@ Zhenguang Liu, Chao Shuai, Shaojing Fan, **Ziping Dong**, Jinwu Hu, Zhongjie Ba,
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint</div><img src='images/certifiedrobust.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[“Training robust watermarking model may hurt authentication!” Exploring and Mitigating the Identity Leakage in Robust Watermarking]()
+[“Training robust watermarking model may hurt authentication!” Exploring and Mitigating the Identity Leakage in Robust Watermarking](https://arxiv.org/html/2605.09646v1)
 
 Xinyu Zhang, **Ziping Dong**, Qingyu Liu, Yuan Hong, Zhongjie Ba.
 </div>
