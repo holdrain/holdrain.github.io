@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="title">
+  <title id="title">Quiet abstract lines on a warm paper background</title>
+  <rect width="640" height="400" fill="#edf1ec"/>
+  <rect x="96" y="63" width="358" height="274" rx="5" fill="#f9faf7" stroke="#d7dfd7" stroke-width="2"/>
+  <path d="M142 126h256M142 165h210M142 204h235M142 243h184" stroke="#b9c8bd" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="486" cy="259" r="57" fill="#d2e0d4"/>
+  <path d="M465 261l15 15 29-34" fill="none" stroke="#6f947d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
