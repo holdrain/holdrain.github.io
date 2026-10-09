@@ -1,15 +1,10 @@
 # Ziping Dong — personal website
 
-A small, static personal website for GitHub Pages. It uses plain HTML and CSS, so it needs no build step or Jekyll installation.
+A minimal static website for GitHub Pages. It uses plain HTML and CSS, with no build step.
 
-## Pages
+- `index.html` contains the profile, news, publications, education, honors, hobbies, and blog section.
+- `styles.css` contains the shared design.
 
-- `/` — introduction, updates, publications, and contact
-- `/blog/` — long-form writing
-- `/thinking/` — short reflections
+To preview locally, run `python3 -m http.server 8000` in the repository root and open `http://localhost:8000`.
 
-The Blog and Thinking pages currently show an empty state because no entries have been provided. To publish an entry, create a standalone HTML page in the appropriate directory and add a link to that directory’s `index.html`. Copy its header and footer so the page keeps the same design.
-
-## Preview
-
-Run `python3 -m http.server 8000` from the repository root and open `http://localhost:8000`. GitHub Pages serves this site directly from the repository root. The `.nojekyll` file keeps the site independent of Jekyll.
+The Blog section currently has no posts. To publish a note, add its title, date, and link to the Blog section in `index.html`.
