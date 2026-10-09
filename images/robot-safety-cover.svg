@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title">
+  <title id="title">Robot arm moving within a safe area</title>
+  <rect width="960" height="540" fill="#eef2ef"/>
+  <path d="M0 418h960" stroke="#c7d3cc" stroke-width="2"/>
+  <path d="M172 418h586" stroke="#9fb9aa" stroke-width="3" stroke-dasharray="7 10"/>
+  <rect x="222" y="386" width="152" height="32" rx="8" fill="#506e63"/>
+  <path d="M299 386v-91l152-73 129 73" fill="none" stroke="#456a5b" stroke-width="39" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="299" cy="294" r="29" fill="#f9faf8" stroke="#456a5b" stroke-width="15"/>
+  <circle cx="451" cy="222" r="29" fill="#f9faf8" stroke="#456a5b" stroke-width="15"/>
+  <circle cx="579" cy="295" r="25" fill="#f9faf8" stroke="#456a5b" stroke-width="13"/>
+  <path d="M579 318v42m-23 0h46m-46 0-18 26m64-26 18 26" fill="none" stroke="#456a5b" stroke-width="12" stroke-linecap="round"/>
+  <path d="M750 154c-61 9-112 40-144 88m144-88c-4 47-2 84 9 120" fill="none" stroke="#a0beac" stroke-width="3" stroke-dasharray="8 9"/>
+  <circle cx="762" cy="137" r="35" fill="#d4e3d8" stroke="#8eae97" stroke-width="3"/>
+  <path d="m747 138 11 11 19-24" fill="none" stroke="#547961" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="A blog article by Ziping Dong about motion planning and safety in Robot-Use Agents.">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="/styles.css">
+  <title>From Motion Planning to Robot-Use Agents: Who Is Responsible for Safety? · Ziping Dong</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="wrap header-inner">
+    <a class="site-name" href="/">Ziping Dong</a>
+    <nav aria-label="Main navigation">
+      <a href="/#about">About</a><a href="/#publications">Publications</a>
+      <a href="/#background">Background</a><a href="/#blog">Blog</a>
+    </nav>
+  </div></header>
+  <main id="main" class="wrap article-page">
+    <a class="back-link" href="/#blog">← Back to Blog</a>
+    <article>
+      <p class="article-label">Blog · Ziping Dong</p>
+      <h1>From Motion Planning to Robot-Use Agents: Who Is Responsible for Safety?</h1>
+      <img class="article-cover" src="/images/robot-safety-cover.svg" alt="Abstract illustration of a robot arm and a safety boundary">
+      <div class="article-body">
+<h2 id="introduction">Introduction</h2>
+<p>Robotic systems are becoming increasingly capable of understanding natural-language instructions, interpreting visual environments, and autonomously interacting with the physical world. An emerging direction is the development of <strong>Robot-Use Agents (RUAs)</strong>, where vision-language models (VLMs) or large language models (LLMs) operate robotic platforms through predefined tools and APIs.</p>
+<p>Unlike conventional robotic pipelines, where task planning, motion planning, and control often have explicitly defined responsibilities, RUAs introduce an autonomous decision-making agent that can select tools, generate intermediate actions, and adapt its behavior based on environmental feedback.</p>
+<p>This raises an important question: <strong>Who is responsible for ensuring that a robot moves safely when its actions are selected by an autonomous agent?</strong></p>
+<p>To understand the implications, we first need to examine how existing robotic systems handle motion planning and collision avoidance.</p>
+<h2 id="how-do-conventional-robotic-systems-move-safely">How Do Conventional Robotic Systems Move Safely?</h2>
+<p>Consider a robotic arm tasked with picking up a cup from a table. The objective seems straightforward: move the gripper to the cup, grasp it, and transport it to a destination.</p>
+<p>However, knowing the destination is not enough.</p>
+<p>The robot must determine how to reach the target while respecting its physical constraints and avoiding unintended collisions with surrounding objects. A typical robotic manipulation pipeline addresses this through several stages.</p>
+<p><strong>1. Perception and Environment Representation</strong></p>
+<p>The system first determines the robot&#x27;s current state and represents relevant objects in its workspace. Camera observations, depth measurements, joint encoders, and other sensors may contribute to this representation.</p>
+<p>For collision checking, the environment is commonly represented through geometric models such as bounding volumes, meshes, or occupancy maps. The robot also has its own geometric and kinematic model, describing its links, joints, and physical dimensions.</p>
+<p>These representations allow the system to reason not only about where the gripper is located, but also about the space occupied by the entire robot.</p>
+<p><strong>2. Inverse Kinematics and Goal Configuration</strong></p>
+<p>Given a desired end-effector pose, the system may use inverse kinematics (IK) to determine joint angles that can achieve it.</p>
+<p>Importantly, multiple joint configurations may correspond to the same end-effector pose. A robotic arm might reach a target with its elbow extended toward an obstacle or with its elbow bent away from it.</p>
+<p>Consequently, reaching the desired coordinates does not necessarily imply that a particular joint configuration is safe.</p>
+<p><strong>3. Motion Planning and Collision Checking</strong></p>
+<p>A motion planner searches for a feasible path from the robot&#x27;s current configuration to a target configuration.</p>
+<p>Instead of considering only the gripper&#x27;s movement, collision-aware planning evaluates the robot&#x27;s geometry along the proposed path. It may check for collisions between the robot and its environment, as well as self-collisions between different robot links.</p>
+<p>Planning algorithms such as RRT and PRM, or optimization-based methods such as CHOMP, can be used to generate paths while accounting for relevant constraints.</p>
+<p>For example, a planner may select a longer trajectory around a water glass rather than a shorter trajectory that would cause the robot&#x27;s forearm to strike it.</p>
+<p>Some contacts are intentional, such as grasping an object or pushing a drawer. Therefore, the goal is not to eliminate all contact, but to distinguish permitted interactions from unsafe collisions.</p>
+<p><strong>4. Trajectory Generation and Low-Level Control</strong></p>
+<p>After obtaining a feasible geometric path, the system generates an executable trajectory, considering factors such as joint velocity and acceleration limits.</p>
+<p>A low-level controller then tracks the planned trajectory by generating appropriate joint commands or motor torques.</p>
+<p>This distinction is important: the motion planner determines <em>where and how the robot should move</em>, while the controller is primarily responsible for executing the commanded motion accurately.</p>
+<p><strong>5. Execution Monitoring and Replanning</strong></p>
+<p>Planning a safe trajectory does not guarantee that execution will remain safe.</p>
+<p>Objects may move, perception may be inaccurate, and the robot may deviate from its expected trajectory. Depending on the system, execution monitoring and collision-aware safeguards can detect unsafe conditions, trigger replanning, or stop the robot.</p>
+<p>Thus, safety in a well-engineered robotic system is not necessarily a single planning decision. It can involve continuous coordination between perception, planning, control, and monitoring.</p>
+<p>These mechanisms provide explicit places where physical constraints can be checked. Nevertheless, their effectiveness depends on environmental accuracy, sensor coverage, implementation, and the safety constraints being enforced.</p>
+<h2 id="what-changes-with-robot-use-agents">What Changes with Robot-Use Agents?</h2>
+<p>Robot-Use Agents introduce a different interaction model.</p>
+<p>Instead of following a fixed task-specific program or relying entirely on a predefined manipulation pipeline, an autonomous agent can interpret instructions, inspect visual observations, decompose tasks, and invoke robotic tools.</p>
+<p>For example, an RUA might perform the following sequence:</p>
+<ol><li>Observe a cup on the table.</li><li>Call <code>move_forward(0.05)</code>.</li><li>Observe the updated environment.</li><li>Call <code>move_left(0.02)</code>.</li><li>Call <code>close_gripper()</code>.</li><li>Continue toward the destination.</li></ol>
+<p>Each operation may be translated by an underlying controller into joint movements.</p>
+<p>However, this introduces an architectural ambiguity: <strong>Does the robot actually have a motion planner, or is the agent effectively determining the trajectory through a sequence of local tool calls?</strong></p>
+<p>The answer depends on how the tools are implemented.</p>
+<p>For example, a <code>move_to_pose()</code> tool might invoke a collision-aware motion planner that generates a valid trajectory. In contrast, a <code>move_forward()</code> tool might simply command a Cartesian displacement, leaving collision avoidance largely to the agent&#x27;s decisions or to additional safeguards, if present.</p>
+<p>These tools may look similar from the agent&#x27;s perspective, but they can provide fundamentally different safety properties.</p>
+<p>Moreover, small actions do not automatically guarantee safe movements. Even a few centimeters of end-effector displacement can cause another part of the robotic arm to collide with an obstacle.</p>
+<p>An agent can therefore successfully generate and execute a sequence of valid tool calls without ensuring that the resulting physical trajectory is safe.</p>
+<h2 id="the-shift-in-safety-responsibilities">The Shift in Safety Responsibilities</h2>
+<p>The emergence of RUAs does not necessarily eliminate conventional motion planning. Instead, it changes how safety-related decisions are distributed across the system.</p>
+<p>In some architectures, a high-level agent specifies task goals while dedicated planning modules preserve responsibility for geometric feasibility and collision checking.</p>
+<p>In others, the agent directly selects incremental movements, implicitly assuming some responsibility for choosing safe paths.</p>
+<p>A third possibility is that the system employs independent safety filters that validate or modify agent-generated actions before execution.</p>
+<p>The concern arises when these responsibilities are not clearly defined.</p>
+<p>Imagine an RUA approaching a cup placed beside a fragile glass. The agent selects a small movement toward the cup, assuming the robot controller will prevent any collisions. However, the controller may only be designed to track the requested displacement, assuming that the upstream decision-maker has already selected a safe action.</p>
+<p>Neither component necessarily violates its own design assumptions, yet the combined system may produce unsafe behavior.</p>
+<p>This illustrates a potential <strong>safety responsibility gap</strong>: a situation where no component explicitly verifies a safety property because different layers implicitly assume that another component is responsible for it.</p>
+<p>The problem is not simply whether the model makes mistakes, but whether the overall architecture can detect and contain those mistakes before they affect physical execution.</p>
+<h2 id="new-security-challenges-in-agentic-robotic-systems">New Security Challenges in Agentic Robotic Systems</h2>
+<p>RUAs introduce additional security concerns because their actions can be influenced by external information, including visual observations, natural-language instructions, and tool outputs.</p>
+<p>For example, an attacker might place malicious instructions in the robot&#x27;s visual environment, attempting to manipulate the agent into selecting an unsafe destination or generating an inappropriate sequence of movement commands.</p>
+<p>The resulting physical hazards, such as collisions or unintended object manipulation, are not new to robotics. What is different is the pathway through which they may arise: adversarial information can influence a general-purpose reasoning agent, which then invokes legitimate robot tools to execute the resulting decisions.</p>
+<p>This creates several research questions.</p>
+<p><strong>Can an attacker exploit the gap between agent-level decision-making and physical safety enforcement?</strong> An agent may generate commands that are valid according to the tool interface but unsafe in the physical environment.</p>
+<p><strong>Can safety checks remain effective across multi-step execution?</strong> An individually acceptable tool call may become dangerous when combined with preceding actions or changing environmental conditions.</p>
+<p><strong>How should safety be enforced across different levels of abstraction?</strong> High-level reasoning can help identify inappropriate goals, whereas geometric planning and low-level safeguards can enforce specific physical constraints. Neither mechanism necessarily substitutes for the other.</p>
+<p><strong>How should we evaluate robot-use agent safety?</strong> Final task success alone may conceal unsafe intermediate trajectories, near-collisions, unnecessary risk-taking, or failures that are avoided only by chance.</p>
+<p>These questions suggest that RUA security should be evaluated at the level of the complete agent–tool–controller system rather than treating the VLM as an isolated component.</p>
+<h2 id="conclusion-safety-beyond-task-completion">Conclusion: Safety Beyond Task Completion</h2>
+<p>Conventional robotics has developed extensive mechanisms for motion planning, collision checking, trajectory generation, and execution monitoring. These mechanisms make it possible to explicitly evaluate many physical constraints before and during movement, although they do not provide unconditional safety guarantees.</p>
+<p>Robot-Use Agents introduce a new decision-making layer that can interact with these mechanisms through tools and APIs. Depending on the architecture, the agent may delegate motion planning to specialized modules, partially replace planning decisions with incremental commands, or operate through interfaces with limited safety enforcement.</p>
+<p>The key challenge is therefore not that RUAs necessarily lack motion planning, but that <strong>the boundary between autonomous decision-making and physical safety enforcement can become unclear</strong>.</p>
+<p>As robotic agents gain greater autonomy, understanding these boundaries will become increasingly important. Future research should investigate not only whether agents can successfully complete tasks, but also whether their decisions can be independently validated, safely executed, and monitored throughout multi-step interactions.</p>
+<p>Ultimately, a reliable Robot-Use Agent should not merely know what action to take next. The complete system must also ensure, within clearly defined safety assumptions, that executing that action does not compromise physical safety.</p>
+      </div>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="wrap"><span>© 2026 Ziping Dong</span><a href="mailto:dongziping@u.nus.edu">dongziping@u.nus.edu</a></div></footer>
+</body>
+</html>
