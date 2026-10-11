@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Simple layered pyramids comparing VLA and RUA">
+  <rect width="1200" height="630" fill="#fffdfb"/>
+  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
+    <text x="600" y="82" font-size="38" font-weight="600" fill="#2f8e70">VLA and RUA hierarchy</text>
+    <text x="313" y="165" font-size="30" font-weight="600" fill="#3975a8">VLA</text>
+    <text x="887" y="165" font-size="30" font-weight="600" fill="#2f8e70">RUA</text>
+    <path d="M313 195 L129 499 L497 499 Z" fill="#76a4c9" stroke="#3975a8" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M123 510 L503 510 L540 570 L86 570 Z" fill="#dce9f2" stroke="#3975a8" stroke-width="4" stroke-linejoin="round"/>
+    <text x="313" y="350" font-size="25" font-weight="600" fill="#183f5c">VLA model</text>
+    <text x="313" y="386" font-size="17" fill="#183f5c">↓ (x, y, z, gripper)</text>
+    <text x="313" y="550" font-size="22" font-weight="600" fill="#183f5c">Robot interface</text>
+    <path d="M887 195 L750 410 L1024 410 Z" fill="#8fcbb5" stroke="#2f8e70" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M750 421 L1024 421 L1072 499 L702 499 Z" fill="#c2e0d1" stroke="#2f8e70" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M697 510 L1077 510 L1114 570 L660 570 Z" fill="#e1eee7" stroke="#2f8e70" stroke-width="4" stroke-linejoin="round"/>
+    <text x="887" y="308" font-size="21" font-weight="600" fill="#164d3d">VLM agent</text>
+    <text x="887" y="339" font-size="17" fill="#164d3d">Observe · reason · plan</text>
+    <text x="887" y="371" font-size="16" fill="#164d3d">↓ tool_call(...)</text>
+    <text x="887" y="451" font-size="17" font-weight="600" fill="#164d3d">Code / VLA / world model</text>
+    <text x="887" y="478" font-size="15" fill="#164d3d">↓ (x, y, z, gripper)</text>
+    <text x="887" y="550" font-size="21" font-weight="600" fill="#164d3d">Robot interface</text>
+  </g>
+</svg>
