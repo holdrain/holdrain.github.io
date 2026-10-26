@@ -28,6 +28,26 @@ This layer has three practical limits: an unreachable or inappropriate target fr
 
 In a VLA-based pipeline, a learned policy predicts actions from instructions and observations. Some motion behavior is learned rather than explicitly planned. A VLA can still be paired with a collision checker, action filter, or monitored controller. The important question is which constraints are checked before and during execution; safe behavior cannot be inferred from the policy output alone.
 
+### Safe policies at the VLA layer
+
+SafeVLA (Zhang et al., 2025) learns safety through constrained reinforcement learning. Its Integrated Safety Approach builds Safety-CHORES in AI2-THOR using ProcTHOR scenes and Objaverse assets, covering navigation, pickup, and fetching. State–action and trajectory predicates identify hazards such as collisions in blind spots, damage to fragile objects, and dangerous equipment interactions. Violations become explicit cost signals alongside the task reward. [1]
+
+The policy is fine-tuned to maximize task return subject to limits on expected cumulative safety costs (a CMDP). Lagrange multipliers adapt the pressure on violated constraints during training. This places responsibility for avoiding modeled hazards inside the learned policy. Its limits are the coverage of the predicates, training distribution, and simulator: an expected-cost constraint does not guarantee that every action or episode is safe. Safety and performance can improve together; the constrained formulation does not imply that better safety must reduce success. [1, Sections 3–4]
+
+### Evaluating whether the policy actually acts safely
+
+SafeVLA-Bench (Fan et al., 2026) adds post-hoc evaluation to unchanged LIBERO and RoboCasa-365 rollouts. It extracts simulator signals and checks task-aware Signal Temporal Logic specifications: contact forces, bystander movement, transport tilt, grasp slip, joint torque, and self-collision. Applicability rules avoid penalizing required behavior, such as tilting a bottle for insertion. [2]
+
+It reports native success, Safety (all applicable clauses satisfied), SBU (successful but unsafe episodes divided by all episodes), and VSI (normalized worst-violation depth). Its labels also support policy improvement: a DPO case study prefers safe successes over unsafe successes from the same initial state. [2, Sections 3–4]
+
+This evaluates the VLA layer but does not block an unsafe action during execution. Thresholds and simulator fidelity bound the conclusions; tilt is a spill proxy, not measured fluid damage. In our responsibility stack, learned avoidance, trajectory evaluation, and runtime intervention therefore require explicit, separate owners. [2, Section 5]
+
+### References
+
+[1] Zhang et al. SafeVLA: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning. NeurIPS 2025. https://arxiv.org/abs/2503.03480
+
+[2] Fan et al. SafeVLA-Bench: A Benchmark for the Success–Safety Gap in Vision-Language-Action Models. 2026, v3. https://arxiv.org/abs/2606.00773
+
 An RUA adds another decision layer. Its agent may call a collision-aware planner, invoke a VLA skill, or issue incremental movements through a direct API. These routes can look similar to the agent while enforcing very different physical constraints. The agent chooses the goal and execution tool; the tool and controller must have explicit responsibilities for validating and carrying out the resulting motion.
 
 The **safety responsibility gap** appears when a property is assumed to be checked somewhere in this chain, but no component actually checks it. For example, an agent might command a small movement toward a cup beside a fragile glass, assuming the controller will prevent collisions. If the controller only tracks the requested displacement, the arm may strike the glass even though both components behaved as designed. Clear tool contracts and independent checks make it possible to identify who validates the goal, the planned path, and the motion as it unfolds.
