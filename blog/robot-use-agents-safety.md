@@ -26,21 +26,7 @@ A planner such as cuRobo makes the **IK + motion planner / collision checking** 
 
 This layer has three practical limits: an unreachable or inappropriate target from above cannot be repaired by collision checking alone; missing, mislocalized, or moving obstacles make the world model unreliable, especially when real-robot perception is built from camera and depth data; and controller error or a scene change during execution can invalidate a previously safe plan. The first calls for goal-level feedback, the second for updated perception, and the third for execution monitoring, replanning, or stopping.
 
-### VLA policy: learning to act safely
-
-A VLA predicts robot actions from observations and an instruction. Safety at this layer means teaching the policy to choose safer actions. SafeVLA provides one concrete approach.
-
-SafeVLA first builds Safety-CHORES, a simulated environment for navigation, pickup, and fetching. The authors define rules for unsafe behavior, such as hitting an obstacle or disturbing fragile objects. During training, the environment checks these rules and assigns a cost when a violation occurs. The VLA then learns to complete tasks while keeping its expected cumulative safety cost below a specified budget. This is constrained reinforcement learning: task reward measures progress, while a separate cost constraint limits unsafe behavior. See [SafeVLA, Sections 3–4](https://arxiv.org/html/2503.03480v3#S4).
-
-The limitation is that the policy learns from the hazards its environment can represent and detect. Missing rules or unfamiliar situations can still lead to unsafe actions. Moreover, limiting expected cumulative cost does not ensure that every execution is safe. A trained policy therefore still needs independent checks during deployment.
-
-### VLA evaluation: checking how the task was completed
-
-SafeVLA-Bench addresses a related question: did the robot complete the task safely? It adds safety evaluation to existing LIBERO and RoboCasa-365 trajectories. The evaluator reads simulator signals, including contact forces and object motion, and checks explicit rules over the execution. For example, it can detect a robot that reaches the goal after pushing a nearby object. Rules are selected for each task, so required behavior, such as tilting an object for insertion, is not automatically penalized. See [SafeVLA-Bench, Section 3](https://arxiv.org/html/2606.00773v3#S3).
-
-Alongside task success, it reports how often all applicable safety rules hold, how often success involves a violation, and how severe the worst violation is. These labels can also guide further policy training. However, this evaluation happens after execution; it does not stop the robot before a violation. Its conclusions also depend on simulator accuracy and the chosen safety thresholds.
-
-### RUA: choosing the execution tool
+In a VLA-based pipeline, safety can also be addressed through policy training and evaluation. [SafeVLA](https://arxiv.org/abs/2503.03480) trains the policy to complete tasks while limiting safety violations in simulation, while [SafeVLA-Bench](https://arxiv.org/abs/2606.00773) checks whether the task was completed safely; neither guarantees safety during execution.
 
 An RUA adds another decision layer. Its agent may call a collision-aware planner, invoke a VLA skill, or issue incremental movements through a direct API. These routes can look similar to the agent while enforcing very different physical constraints. The agent chooses the goal and execution tool; the tool and controller must have explicit responsibilities for validating and carrying out the resulting motion.
 
