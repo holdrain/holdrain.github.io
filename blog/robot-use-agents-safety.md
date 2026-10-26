@@ -22,19 +22,13 @@ What matters is where, along that route, someone actually checks whether the mov
 ![Safety responsibility across conventional robotics, VLA-based robotics, and robot-use agents](/blog/robot-use-agents-safety/robot_safety_responsibility.svg)
 In a conventional planning pipeline, the task planner specifies a goal, while motion planning and collision checking evaluate a proposed trajectory against models of the robot and its environment. The controller executes that trajectory, and monitoring can detect changes during execution. These are identifiable checkpoints, although their effectiveness still depends on the quality of the models, sensors, and constraints.
 
+A planner such as cuRobo makes the **IK + motion planner / collision checking** layer concrete. It takes the current joint state, a target end-effector pose, and a world model containing obstacle geometry. It finds joint configurations for the target, searches and optimizes a path, and checks the robot's links and any attached object along that path against obstacles and joint constraints. If no valid path is found, it returns failure so the task planner or VLA can propose another approach or revise the subgoal.
+
+This layer has three practical limits: an unreachable or inappropriate target from above cannot be repaired by collision checking alone; missing, mislocalized, or moving obstacles make the world model unreliable, especially when real-robot perception is built from camera and depth data; and controller error or a scene change during execution can invalidate a previously safe plan. The first calls for goal-level feedback, the second for updated perception, and the third for execution monitoring, replanning, or stopping.
+
 In a VLA-based pipeline, a learned policy predicts actions from instructions and observations. Some motion behavior is learned rather than explicitly planned. A VLA can still be paired with a collision checker, action filter, or monitored controller. The important question is which constraints are checked before and during execution; safe behavior cannot be inferred from the policy output alone.
 
 An RUA adds another decision layer. Its agent may call a collision-aware planner, invoke a VLA skill, or issue incremental movements through a direct API. These routes can look similar to the agent while enforcing very different physical constraints. The agent chooses the goal and execution tool; the tool and controller must have explicit responsibilities for validating and carrying out the resulting motion.
-
-## What a Collision-Aware Planner Still Needs
-
-Consider a concrete RUA design: the agent or VLA proposes a target end-effector pose, and a planner such as cuRobo computes a collision-aware joint trajectory. This gives the system an explicit path check, but three dependencies remain:
-
-1. **A valid goal from above.** A target pose may be unreachable, or reachable only through blocked paths. The planner should return failure and let the agent choose another approach pose or revise its subgoal. A collision-free path to the wrong object is also possible: geometric planning cannot validate the agent's task-level intent.
-2. **A timely and accurate world model.** The planner checks the obstacles it has been given. In simulation, these can come directly from the environment state; on a real robot, camera and depth observations must be turned into obstacle geometry in the correct coordinate frame. Occluded objects, localization error, an omitted grasped object, or a moving person can make a seemingly safe plan unsafe.
-3. **Safe execution and feedback.** A valid planned trajectory can still deviate under controller error, latency, contact, or a newly moving obstacle. The system must monitor execution, refresh the scene, and replan or stop when the plan no longer matches reality.
-
-This makes the contract explicit: the agent chooses a meaningful goal, perception supplies a current scene, the planner finds a collision-aware path, and the controller monitors the motion actually executed. A planner's success flag alone does not certify the full system as safe.
 
 The **safety responsibility gap** appears when a property is assumed to be checked somewhere in this chain, but no component actually checks it. For example, an agent might command a small movement toward a cup beside a fragile glass, assuming the controller will prevent collisions. If the controller only tracks the requested displacement, the arm may strike the glass even though both components behaved as designed. Clear tool contracts and independent checks make it possible to identify who validates the goal, the planned path, and the motion as it unfolds.
 
