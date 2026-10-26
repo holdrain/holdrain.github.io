@@ -79,6 +79,7 @@ def main():
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="A blog article by Ziping Dong about motion planning and safety in Robot-Use Agents.">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <link rel="icon" href="/images/favicon.ico">
   <link rel="stylesheet" href="/styles.css">
   <title>{escape(title)} · Ziping Dong</title>
