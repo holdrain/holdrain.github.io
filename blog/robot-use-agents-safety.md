@@ -26,27 +26,21 @@ A planner such as cuRobo makes the **IK + motion planner / collision checking** 
 
 This layer has three practical limits: an unreachable or inappropriate target from above cannot be repaired by collision checking alone; missing, mislocalized, or moving obstacles make the world model unreliable, especially when real-robot perception is built from camera and depth data; and controller error or a scene change during execution can invalidate a previously safe plan. The first calls for goal-level feedback, the second for updated perception, and the third for execution monitoring, replanning, or stopping.
 
-In a VLA-based pipeline, a learned policy predicts actions from instructions and observations. Some motion behavior is learned rather than explicitly planned. A VLA can still be paired with a collision checker, action filter, or monitored controller. The important question is which constraints are checked before and during execution; safe behavior cannot be inferred from the policy output alone.
+### VLA policy: learning to act safely
 
-### Safe policies at the VLA layer
+A VLA predicts robot actions from observations and an instruction. Safety at this layer means teaching the policy to choose safer actions. SafeVLA provides one concrete approach.
 
-SafeVLA (Zhang et al., 2025) learns safety through constrained reinforcement learning. Its Integrated Safety Approach builds Safety-CHORES in AI2-THOR using ProcTHOR scenes and Objaverse assets, covering navigation, pickup, and fetching. State–action and trajectory predicates identify hazards such as collisions in blind spots, damage to fragile objects, and dangerous equipment interactions. Violations become explicit cost signals alongside the task reward. [1]
+SafeVLA first builds Safety-CHORES, a simulated environment for navigation, pickup, and fetching. The authors define rules for unsafe behavior, such as hitting an obstacle or disturbing fragile objects. During training, the environment checks these rules and assigns a cost when a violation occurs. The VLA then learns to complete tasks while keeping its expected cumulative safety cost below a specified budget. This is constrained reinforcement learning: task reward measures progress, while a separate cost constraint limits unsafe behavior. See [SafeVLA, Sections 3–4](https://arxiv.org/html/2503.03480v3#S4).
 
-The policy is fine-tuned to maximize task return subject to limits on expected cumulative safety costs (a CMDP). Lagrange multipliers adapt the pressure on violated constraints during training. This places responsibility for avoiding modeled hazards inside the learned policy. Its limits are the coverage of the predicates, training distribution, and simulator: an expected-cost constraint does not guarantee that every action or episode is safe. Safety and performance can improve together; the constrained formulation does not imply that better safety must reduce success. [1, Sections 3–4]
+The limitation is that the policy learns from the hazards its environment can represent and detect. Missing rules or unfamiliar situations can still lead to unsafe actions. Moreover, limiting expected cumulative cost does not ensure that every execution is safe. A trained policy therefore still needs independent checks during deployment.
 
-### Evaluating whether the policy actually acts safely
+### VLA evaluation: checking how the task was completed
 
-SafeVLA-Bench (Fan et al., 2026) adds post-hoc evaluation to unchanged LIBERO and RoboCasa-365 rollouts. It extracts simulator signals and checks task-aware Signal Temporal Logic specifications: contact forces, bystander movement, transport tilt, grasp slip, joint torque, and self-collision. Applicability rules avoid penalizing required behavior, such as tilting a bottle for insertion. [2]
+SafeVLA-Bench addresses a related question: did the robot complete the task safely? It adds safety evaluation to existing LIBERO and RoboCasa-365 trajectories. The evaluator reads simulator signals, including contact forces and object motion, and checks explicit rules over the execution. For example, it can detect a robot that reaches the goal after pushing a nearby object. Rules are selected for each task, so required behavior, such as tilting an object for insertion, is not automatically penalized. See [SafeVLA-Bench, Section 3](https://arxiv.org/html/2606.00773v3#S3).
 
-It reports native success, Safety (all applicable clauses satisfied), SBU (successful but unsafe episodes divided by all episodes), and VSI (normalized worst-violation depth). Its labels also support policy improvement: a DPO case study prefers safe successes over unsafe successes from the same initial state. [2, Sections 3–4]
+Alongside task success, it reports how often all applicable safety rules hold, how often success involves a violation, and how severe the worst violation is. These labels can also guide further policy training. However, this evaluation happens after execution; it does not stop the robot before a violation. Its conclusions also depend on simulator accuracy and the chosen safety thresholds.
 
-This evaluates the VLA layer but does not block an unsafe action during execution. Thresholds and simulator fidelity bound the conclusions; tilt is a spill proxy, not measured fluid damage. In our responsibility stack, learned avoidance, trajectory evaluation, and runtime intervention therefore require explicit, separate owners. [2, Section 5]
-
-### References
-
-[1] Zhang et al. SafeVLA: Towards Safety Alignment of Vision-Language-Action Model via Constrained Learning. NeurIPS 2025. https://arxiv.org/abs/2503.03480
-
-[2] Fan et al. SafeVLA-Bench: A Benchmark for the Success–Safety Gap in Vision-Language-Action Models. 2026, v3. https://arxiv.org/abs/2606.00773
+### RUA: choosing the execution tool
 
 An RUA adds another decision layer. Its agent may call a collision-aware planner, invoke a VLA skill, or issue incremental movements through a direct API. These routes can look similar to the agent while enforcing very different physical constraints. The agent chooses the goal and execution tool; the tool and controller must have explicit responsibilities for validating and carrying out the resulting motion.
 
