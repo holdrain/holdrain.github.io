@@ -20,7 +20,18 @@ function renderBoard() {
  $('#model-rows').innerHTML=ms.map(m=>`<tr class="${selectedModel===m.name?'selected':''}"><td>${String(m.rank).padStart(2,'0')}</td><th scope="row" class="model-name">${esc(m.name)}<small>${m.access==='open_weights'?'Open weights':'Closed API'}${m.name==='SII-Decision-4B'?' · reliability: +fla':''}</small></th><td class="score-cell">${scoreCell(m.C,'')}</td><td class="score-cell">${scoreCell(m.R,'reliability')}</td><td class="num">${f(m.S)}</td><td class="num">${f(m.N)}</td><td><button class="inspect" data-model="${esc(m.name)}" aria-label="Inspect ${esc(m.name)}">Inspect ↗</button></td></tr>`).join('');
  $('#model-count').textContent=`${ms.length} / 21 models`; $('#no-results').hidden=ms.length!==0;
  $('#board-status').textContent=`${ms.length} models, sorted by ${$('#sort-by').selectedOptions[0].textContent}. Competence ranks remain unchanged.`;
- $$('#model-rows .inspect').forEach(b=>b.onclick=()=>inspect(b.dataset.model)); renderScatter(ms);
+ $$('#model-rows .inspect').forEach(b=>b.onclick=()=>inspect(b.dataset.model)); renderScatter(ms); renderRankBars(ms);
+}
+function renderRankBars(ms) {
+ const key=$('#sort-by').value, signed=key==='S'||key==='N';
+ $('#rank-unit').textContent={C:'C / 100',R:'100R',S:'S',N:'N'}[key];
+ $('#rank-scale').innerHTML=(signed?[-1,-.5,0,.5,1]:[0,25,50,75,100]).map(v=>`<span>${v}</span>`).join('');
+ $('#rank-bars').innerHTML=ms.map(m=>{
+  const raw=m[key], pct=raw==null?0:signed?raw*50:raw, left=signed?(raw<0?50+pct:50):0;
+  return `<button class="rank-row ${m.access==='closed_api'?'api':''} ${selectedModel===m.name?'active':''}" data-rank-model="${esc(m.name)}" aria-label="Competence rank ${m.rank}, ${esc(m.name)}, ${key} ${raw==null?'not measured':f(raw)}. Inspect model."><span class="rank-label"><span class="rank-number">${String(m.rank).padStart(2,'0')}</span><span class="rank-model">${esc(m.name)}</span></span><span class="rank-track ${signed?'signed':''}"><i style="left:${left}%;width:${Math.abs(pct)}%"></i></span><b>${f(raw)}</b></button>`;
+ }).join('');
+ $('#rank-empty').hidden=ms.length!==0;
+ $$('[data-rank-model]').forEach(b=>b.onclick=()=>{inspect(b.dataset.rankModel);$('#model-detail').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'nearest'});});
 }
 function inspect(name) {
  const m=models.find(m=>m.name===name); selectedModel=name;
