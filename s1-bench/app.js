@@ -41,13 +41,30 @@ function inspect(name) {
  $('#score-model').value=name;renderScoring();renderBoard();
 }
 function renderScatter(ms) {
- const measured=ms.filter(m=>m.R!=null); let svg='<svg viewBox="0 0 650 450" role="group" aria-label="Competence versus reliability scatter plot. Select a model point to inspect scores.">';
- const x=r=>60+5.45*r,y=c=>390-3.4*c;
- for(let n=0;n<=100;n+=20)svg+=`<path d="M${x(n)} 50V390 M60 ${y(n)}H605" stroke="#e4e9f2" fill="none"/><text x="${x(n)}" y="412" text-anchor="middle" font-size="11" fill="#64728a">${n}</text><text x="47" y="${y(n)+4}" text-anchor="end" font-size="11" fill="#64728a">${n}</text>`;
- svg+='<text x="335" y="442" text-anchor="middle" font-size="12" fill="#64728a">Reliability · 100R</text><text x="15" y="220" text-anchor="middle" transform="rotate(-90 15 220)" font-size="12" fill="#64728a">Competence · C</text>';
- for(const m of measured)svg+=`<circle class="point" cx="${x(m.R)}" cy="${y(m.C)}" r="${m.name===selectedModel?8:5.5}" fill="${m.access==='closed_api'?'#bc7b12':'#3558e8'}" tabindex="0" role="button" data-point="${esc(m.name)}" aria-label="${esc(m.name)}, competence ${f(m.C)}, reliability ${f(m.R)}"><title>${esc(m.name)} · C ${f(m.C)} · 100R ${f(m.R)}</title></circle>`;
- svg+='</svg>';$('#scatter').innerHTML=svg;
- $$('[data-point]').forEach(p=>{p.onclick=()=>inspect(p.dataset.point);p.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();inspect(p.dataset.point);}};});
+ const measured=ms.filter(m=>m.R!=null), W=1200,H=740;
+ const x=r=>85+10.5*r,y=c=>650-5.8*c;
+ const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');ctx.font='17px Arial';
+ const points=measured.map(m=>({m,x:x(m.R),y:y(m.C)}));
+ const boxes=[],labels=[];
+ const overlaps=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
+ const names={'SII-Decision-4B':'SII-Decision-4B (+fla)','KnowLine-31B-Gen1':'KnowLine-31B','GPT-6 Luna Responses · medium':'GPT-6 Luna','GPT-6 Sol Responses · medium':'GPT-6 Sol'};
+ // Fit labels around exact, unshifted data coordinates. Leaders connect displaced labels.
+ for(const p of [...points].sort((a,b)=>b.m.C-a.m.C)) {
+  const label=names[p.m.name]||p.m.name,w=ctx.measureText(label).width+10,h=24;
+  const candidates=[];
+  for(let radius=0;radius<=300;radius+=28){for(const dy of radius===0?[0]:[-radius,radius]){for(const dx of [16,-w-16,40,-w-40])candidates.push({x:p.x+dx,y:p.y+dy-h/2,w,h});}}
+  let box=candidates.find(b=>b.x>=90&&b.x+b.w<=1160&&b.y>=30&&b.y+b.h<=637&&!boxes.some(q=>overlaps(b,q))&&!points.some(q=>overlaps(b,{x:q.x-10,y:q.y-10,w:20,h:20})));
+  if(!box)box={x:90,y:35+labels.length*26,w,h};
+  boxes.push(box);labels.push({p,label,box});
+ }
+ let svg='<svg viewBox="0 0 1200 740" role="group" aria-label="Competence versus reliability. Every measured model is labeled; select a point or name for exact scores.">';
+ for(let n=0;n<=100;n+=20)svg+=`<path d="M${x(n)} 70V650 M85 ${y(n)}H1135" stroke="#e2e8f2" fill="none"/><text x="${x(n)}" y="681" text-anchor="middle" font-size="19" fill="#53647d">${n}</text><text x="67" y="${y(n)+6}" text-anchor="end" font-size="19" fill="#53647d">${n}</text>`;
+ svg+='<text x="610" y="724" text-anchor="middle" font-size="23" fill="#273b58">Reliability · 100R</text><text x="25" y="360" text-anchor="middle" transform="rotate(-90 25 360)" font-size="23" fill="#273b58">Competence · C</text>';
+ for(const {p,box} of labels){const endX=Math.max(box.x,Math.min(p.x,box.x+box.w)),endY=box.y+box.h/2;svg+=`<path d="M${p.x} ${p.y}L${endX} ${endY}" stroke="#a2afc4" stroke-width="1.2" fill="none"/>`;}
+ for(const p of points){const m=p.m;svg+=`<circle class="point" cx="${p.x}" cy="${p.y}" r="${m.name===selectedModel?9:7}" fill="${m.access==='closed_api'?'#bc7b12':'#3558e8'}" tabindex="0" role="button" data-point="${esc(m.name)}" aria-label="${esc(m.name)}, competence ${f(m.C)}, reliability ${f(m.R)}"><title>${esc(m.name)} · C ${f(m.C)} · 100R ${f(m.R)}</title></circle>`;}
+ for(const {p,label,box} of labels)svg+=`<text class="model-plot-label" x="${box.x+5}" y="${box.y+18}" font-size="17" fill="${p.m.access==='closed_api'?'#94600c':'#253b59'}" data-label-model="${esc(p.m.name)}" tabindex="0" role="button" aria-label="Inspect ${esc(p.m.name)}">${esc(label)}<title>C ${f(p.m.C)} · 100R ${f(p.m.R)}</title></text>`;
+ $('#scatter').innerHTML=svg+'</svg>';
+ $$('[data-point], [data-label-model]').forEach(p=>{const select=()=>inspect(p.dataset.point||p.dataset.labelModel);p.onclick=select;p.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select();}};});
 }
 function setupTabs(selector, onChange) {
  const buttons=$$(selector);
